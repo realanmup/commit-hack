@@ -8,7 +8,7 @@ last_date=$start_date
 # Loop for 365 days
 for (( i=1; i<=2920; i++ )); do
     # Create a file with the current date as the filename
-    mv "$last_date.txt" "$current_date.txt" || touch "$last_date.txt";
+    mv "${last_date}.txt" "$current_date.txt" || touch "$last_date.txt";
     git add . 
     git commit -m "updates for $current_date"
     
@@ -17,7 +17,7 @@ for (( i=1; i<=2920; i++ )); do
     git commit --amend --no-edit --date="$current_date 14:00:00"
 
     # Move to the next day
-    last_date=current_date
+    last_date=$current_date
     current_date=$(date -j -v +1d -f "%Y-%m-%d" "$current_date" "+%Y-%m-%d")
 done
 
