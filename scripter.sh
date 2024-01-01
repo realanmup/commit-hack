@@ -16,6 +16,6 @@ for (( i=1; i<=365; i++ )); do
     git commit --amend --no-edit --date="$current_date 14:00:00"
 
     # Move to the next day
-    current_date=$(date -d "$current_date +1 day" +"%Y-%m-%d")
+    current_date=$(date -j -v +1d -f "%Y-%m-%d" "$current_date" "+%Y-%m-%d")
 done
 
