@@ -8,9 +8,12 @@ current_date=$start_date
 for (( i=1; i<=365; i++ )); do
     # Create a file with the current date as the filename
     touch "${current_date}.txt"
-
+    git add . 
+    git commit -m "updates for $current_date"
+    
     # Set the Git committer date and make a commit
-    GIT_COMMITTER_DATE="$current_date 14:00 2011 +0100" git commit --amend --no-edit --date="$current_date 14:00:00"
+    #GIT_COMMITTER_DATE="$current_date 14:00 2011 +0100" 
+    git commit --amend --no-edit --date="$current_date 14:00:00"
 
     # Move to the next day
     current_date=$(date -d "$current_date +1 day" +"%Y-%m-%d")
